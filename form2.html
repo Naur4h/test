@@ -63,6 +63,8 @@
         
        }
 
+       
+
 
        
     </style>
@@ -75,6 +77,44 @@
         <div class="item4">four</div>
 
     </div>
+    <script>
+        // Menampilkan jam yang terus terupdate
+        function updateJam() {
+            const now = new Date();
+            const jam = now.toLocaleTimeString();
+            document.getElementById('jam').innerText = jam;
+        }
+        setInterval(updateJam, 1000);
+
+        // Menambah form baru
+        document.getElementById('addForm').addEventListener('click', function() {
+            const formContainer = document.getElementById('additionalForms');
+            const newForm = document.createElement('div');
+            newForm.innerHTML = `
+                <label for="nama">Nama: </label>
+                <input type="text" oninput="this.value = this.value.toUpperCase();">
+                <br><br>
+                <label for="nim">NIM: </label>
+                <input type="number">
+                <br><br>
+                <label for="jenisKelamin">Jenis Kelamin: </label>
+                <select name="Jenis Kelamin">
+                    <option value="">--Pilih Jenis Kelamin--</option>
+                    <option value="Pria">Pria</option>
+                    <option value="Wanita">Wanita</option>
+                </select>
+                <br><br>
+            `;
+            formContainer.appendChild(newForm);
+        });
+
+        // submit form
+        document.getElementById('mahasiswaForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Mencegah reload halaman
+            alert("Selamat data telah berhasil disimpan");
+            location.reload(); // Me-refresh halaman
+        });
+    </script>
 
       
 </body>
